@@ -44,4 +44,4 @@ Temporary Items
 
 # My Gitignore
 .idea
-src/__pycache__
+src\__pycache__\*
