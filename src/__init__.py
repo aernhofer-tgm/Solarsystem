@@ -6,7 +6,7 @@ from pygame.locals import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
-from solarsystem import *
+from Solarsystem import *
 import sys
 
 pygame.init()
@@ -56,12 +56,12 @@ while not gameExit:
             gameExit = True
 
     Solarsystem.zeichnen()
-
+    #glRotatef(1, 0.0, 0.0, -10.0)
     #update the screen
     pygame.display.flip()
 
     #set frame rate to 30
-    clock.tick(3)
+    clock.tick(30)
 
 #quitting pygame
 pygame.quit()
