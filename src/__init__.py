@@ -33,13 +33,19 @@ gameExit = False
 clock = pygame.time.Clock()
 
 #set the perspective
-gluPerspective(45,(display_width/display_height),0.1,50)
+
+glViewport(0, 0, display_width, display_height)
+glMatrixMode(GL_PROJECTION)
+glLoadIdentity()
+gluPerspective(45,(display_width/display_height),0.1,100)
+glMatrixMode(GL_MODELVIEW)
 
 #Translate something ... no idea ... (set perspective on z = -5 I guess ...)
-glTranslatef(0.0, 0.0, -5)
+glTranslatef(0.0, 0.0, -10)
 
 #Rotate nothing
-glRotatef(0, 0, 0, 0)
+#glRotatef(0, 0, 0, 0)
+
 
 #create a while loop for as long as the game gets quitted
 while not gameExit:
@@ -55,7 +61,7 @@ while not gameExit:
     pygame.display.flip()
 
     #set frame rate to 30
-    clock.tick(30)
+    clock.tick(3)
 
 #quitting pygame
 pygame.quit()

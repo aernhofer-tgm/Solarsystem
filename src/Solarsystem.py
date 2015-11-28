@@ -1,11 +1,10 @@
 __author__ = 'Jakub Kopec'
-from OpenGL.GL import *
-from OpenGL.GLUT import *
-from OpenGL.GLU import *
+
 from astronomisches_objekt import *
 from textur import *
 
 class Solarsystem(object):
+
 
     def __init__(self):
         pass
@@ -24,3 +23,9 @@ class Solarsystem(object):
 
         #Sonne zeichnen
         AstronomischesObjekt.sonne(textur_sonne)
+
+         #Textur laden
+        textur_erde = Textur.laden("../texturen/erde.jpg")
+
+        #Sonne zeichnen
+        AstronomischesObjekt.erde(textur_erde)
