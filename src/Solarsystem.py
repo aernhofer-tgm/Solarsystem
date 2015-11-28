@@ -20,12 +20,15 @@ class Solarsystem(object):
 
         #Textur laden
         textur_sonne = Textur.laden("../texturen/sun.gif")
-
-        #Sonne zeichnen
+        #Erde zeichnen
         AstronomischesObjekt.sonne(textur_sonne)
 
-         #Textur laden
+        #Textur laden
         textur_erde = Textur.laden("../texturen/erde.jpg")
-
-        #Sonne zeichnen
+        #Erde zeichnen
         AstronomischesObjekt.erde(textur_erde)
+
+        #Textur laden
+        #textur_mars = Textur.laden("../texturen/mars.jpg")
+        #Mars zeichnen
+        #AstronomischesObjekt.mars(textur_mars)
