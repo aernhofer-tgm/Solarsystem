@@ -11,6 +11,8 @@ class AstronomischesObjekt(object):
 
     def sonne(textur):
 
+
+        #glLoadIdentity()
         #Textur uebernehmen
         glBindTexture(GL_TEXTURE_2D, textur)
         quadratic = gluNewQuadric()
@@ -26,8 +28,10 @@ class AstronomischesObjekt(object):
         #iwas was uns das rotieren erlaubt
         #glMatrixMode(GL_MODELVIEW)
 
+        #glLoadIdentity()
+
         #rotation um die Sonne
-        glRotatef(1, 0, 1, 0)
+        #glRotatef(1, 0, 1, 0)
 
         #glPushMatrix()
         #glRotatef(0, 1.0, 0.0, 0.0)  # Rotatation um X-Achse
@@ -42,9 +46,9 @@ class AstronomischesObjekt(object):
         gluQuadricTexture(quadratic, GL_TRUE)
 
         #die eigentliche Form
-        glTranslatef(5.0, 0.0, 0.0)
+        #glTranslatef(5.0, 0.0, 0.0)
         gluSphere(quadratic,1,50,50)
-        glTranslatef(-5.0, 0.0, 0.0)
+        #glTranslatef(-5.0, 0.0, 0.0)
         #glPopMatrix()
 
 

@@ -1,3 +1,5 @@
+import Solarsystem
+
 __author__ = 'Andi Ernhofer'
 
 import pygame
@@ -33,19 +35,20 @@ gameExit = False
 clock = pygame.time.Clock()
 
 #set the perspective
-
 glViewport(0, 0, display_width, display_height)
-#glMatrixMode(GL_PROJECTION)
+glMatrixMode(GL_PROJECTION)
 glLoadIdentity()
+
+
+
 gluPerspective(45,(display_width/display_height),0.1,100)
-gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0)
-#glMatrixMode(GL_MODELVIEW)
+gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
+glMatrixMode(GL_MODELVIEW)
 
-#Translate something ... no idea ... (set perspective on z = -5 I guess ...)
-glTranslatef(0.0, 0.0, -10)
 
-#Rotate nothing
-#glRotatef(0, 0, 0, 0)
+s = Solarsystem()
+
+s.__init__()
 
 
 #create a while loop for as long as the game gets quitted
@@ -56,8 +59,10 @@ while not gameExit:
             #while ends after this point
             gameExit = True
 
-    Solarsystem.zeichnen()
 
+    s.zeichnen()
+
+    glLoadIdentity()
     #Rote Achse -- X-Achse
     glLineWidth(2.5)
     glColor3f(1, 0, 0)
@@ -66,6 +71,7 @@ while not gameExit:
     glVertex3f(100, 0, 0)
     glEnd()
 
+    glLoadIdentity()
     #Gruene Achse -- Y-Achse
     glLineWidth(2.5)
     glColor3f(1, 1, 0)
@@ -74,14 +80,14 @@ while not gameExit:
     glVertex3f(0, 100, 0)
     glEnd()
 
-    #Weisse Achse -- Y-Achse
+    glLoadIdentity()
+    #Weisse Achse -- Z-Achse
     glLineWidth(2.5)
     glColor3f(1, 1, 1)
     glBegin(GL_LINES)
     glVertex3f(0, 0, 0)
     glVertex3f(0, 0, 100)
     glEnd()
-
 
     #update the screen
     pygame.display.flip()
