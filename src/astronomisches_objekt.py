@@ -67,17 +67,17 @@ class AstronomischesObjekt(object):
         gluQuadricTexture(quadratic, GL_TRUE)
 
         #die eigentliche Form
-        glTranslatef(8.0, 0.0, 0.0)
+        #glTranslatef(8.0, 0.0, 0.0)
         gluSphere(quadratic,0.8,50,50)
-        glTranslatef(-8.0, 0.0, 0.0)
+        #glTranslatef(-8.0, 0.0, 0.0)
 
     def mond(textur):
 
         #iwas was uns das rotieren erlaubt
-        glMatrixMode(GL_MODELVIEW)
+        #glMatrixMode(GL_MODELVIEW)
 
         #rotation um die Sonne
-        glRotatef(1, 0.0, 0.0, -10.0)
+        #glRotatef(1, 0.0, 0.0, -10.0)
 
         #Textur uebernehmen
         glBindTexture(GL_TEXTURE_2D, textur)
@@ -86,6 +86,6 @@ class AstronomischesObjekt(object):
         gluQuadricTexture(quadratic, GL_TRUE)
 
         #die eigentliche Form
-        glTranslatef(4.0, 0.0, -10)
+        #glTranslatef(4.0, 0.0, -10)
         gluSphere(quadratic,0.5,50,50)
-        glTranslatef(-4.0, 0.0, 10)
+        #glTranslatef(-4.0, 0.0, 10)
