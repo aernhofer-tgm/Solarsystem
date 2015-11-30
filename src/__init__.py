@@ -14,7 +14,9 @@ from OpenGL.GLU import *
 from OpenGL.GL import *
 from Solarsystem import *
 
-topanischt = False
+#Config
+topanischt = True
+geschwindigkeit = 3
 
 pygame.init()
 
@@ -61,17 +63,21 @@ s = Solarsystem()
 s.__init__()
 
 sonne = Sonne()
+sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
 
 erde = Erde()
 erde.setRotationspunkt(sonne.getPosition())
+erde.setGeschwindigkeitsfaktor(geschwindigkeit)
 
 mars = Mars()
 mars.setRotationspunkt(sonne.getPosition())
+mars.setGeschwindigkeitsfaktor(geschwindigkeit)
 
 erdmond = Erdmond()
 erdmond.setStern(sonne.getPosition())
 erdmond.setPlanet(erde.getPosition())
 erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
+erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
 
 #create a while loop for as long as the game gets quitted
 while not gameExit:
@@ -85,6 +91,8 @@ while not gameExit:
     glShadeModel(GL_SMOOTH)
     glEnable(GL_CULL_FACE)
     glEnable(GL_DEPTH_TEST)
+
+    #Objekte zeichnen
     sonne.zeichnen()
     erde.zeichnen()
     mars.zeichnen()
@@ -121,7 +129,7 @@ while not gameExit:
     pygame.display.flip()
 
     #set frame rate to 30
-    clock.tick(60)
+    clock.tick(30)
 
 #quitting pygame
 pygame.quit()

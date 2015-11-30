@@ -5,6 +5,9 @@ Stern Interface
 Interface für alle Sterne.
 """
 from abc import ABCMeta, abstractmethod
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from Textur.Textur import Textur
 
 class Stern(object):
     __metaclass__ = ABCMeta
@@ -44,6 +47,10 @@ class Stern(object):
 
     def getPosition(self):
         return self.position
+
+
+    def setGeschwindigkeitsfaktor(self,geschwindigkeit):
+        self.drehgeschwindigkeit *= geschwindigkeit
 
     @abstractmethod
     def addPlanet(self):

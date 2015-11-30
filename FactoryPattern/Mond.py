@@ -72,3 +72,7 @@ class Mond(object):
 
     def setPlanetGeschwindigkeit(self,planetgeschwindigkeit):
         self.planetgeschwindigkeit = planetgeschwindigkeit
+
+    def setGeschwindigkeitsfaktor(self,geschwindigkeit):
+        self.rotationsgeschwindigkeit[0] *= geschwindigkeit
+        self.rotationsgeschwindigkeit[1] *= geschwindigkeit
