@@ -16,7 +16,7 @@ from Solarsystem import *
 
 #Config
 topanischt = True
-geschwindigkeit = 3
+geschwindigkeit = 1
 
 pygame.init()
 
@@ -62,6 +62,7 @@ s = Solarsystem()
 
 s.__init__()
 
+
 sonne = Sonne()
 sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
 
@@ -86,6 +87,44 @@ while not gameExit:
         if event.type == pygame.QUIT:
             #while ends after this point
             gameExit = True
+        elif event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_s:
+                print("schneller")
+                geschwindigkeit += 0.1
+
+                #Geschindigkeit updaten
+                sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
+                erde.setGeschwindigkeitsfaktor(geschwindigkeit)
+                mars.setGeschwindigkeitsfaktor(geschwindigkeit)
+                erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
+                erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+            elif event.key == pygame.K_l:
+                if geschwindigkeit != 0:
+                    print("langsamer")
+                    geschwindigkeit -= 0.1
+
+                    #Geschindigkeit updaten
+                    sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    erde.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    mars.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
+                    erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+            elif event.key == pygame.K_p:
+                if geschwindigkeit != 0:
+                    geschwindigkeit = 0
+                else:
+                    geschwindigkeit = 1
+                    print(geschwindigkeit)
+
+                #Geschindigkeit updaten
+                sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
+                erde.setGeschwindigkeitsfaktor(geschwindigkeit)
+                mars.setGeschwindigkeitsfaktor(geschwindigkeit)
+                erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
+                erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glShadeModel(GL_SMOOTH)
@@ -135,3 +174,4 @@ while not gameExit:
 pygame.quit()
 #quitting python
 quit()
+
