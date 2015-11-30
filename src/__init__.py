@@ -92,8 +92,8 @@ while not gameExit:
         elif event.type == pygame.KEYDOWN:
 
             if event.key == pygame.K_s:
-                print("schneller")
-                geschwindigkeit += 0.1
+                geschwindigkeit = round(geschwindigkeit+0.1,1)
+                print("langsamer" + str(geschwindigkeit))
 
                 #Geschindigkeit updaten
                 sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
@@ -104,8 +104,8 @@ while not gameExit:
 
             elif event.key == pygame.K_l:
                 if geschwindigkeit != 0:
-                    print("langsamer")
-                    geschwindigkeit -= 0.1
+                    geschwindigkeit = round(geschwindigkeit-0.1,1)
+                    print("langsamer" + str(geschwindigkeit))
 
                     #Geschindigkeit updaten
                     sonne.setGeschwindigkeitsfaktor(geschwindigkeit)

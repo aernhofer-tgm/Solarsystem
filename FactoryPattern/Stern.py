@@ -17,6 +17,7 @@ class Stern(object):
         self.sonne = 1
         self.groesse = groesse
         self.drehrichtung = drehrichtung
+        self.drehurgeschwindigkeit = drehgeschwindigkeit
         self.drehgeschwindigkeit = drehgeschwindigkeit
         self.textur = textur
         self.position = position
@@ -50,7 +51,7 @@ class Stern(object):
 
 
     def setGeschwindigkeitsfaktor(self,geschwindigkeit):
-        self.drehgeschwindigkeit *= geschwindigkeit
+        self.drehgeschwindigkeit = self.drehurgeschwindigkeit*geschwindigkeit
 
     def getGeschwindigkeit(self):
         return self.drehgeschwindigkeit

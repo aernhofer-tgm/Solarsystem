@@ -17,6 +17,7 @@ class Sonne(Stern):
         self.sonne = 1
         self.groesse = groesse
         self.drehrichtung = drehrichtung
+        self.drehurgeschwindigkeit = drehgeschwindigkeit
         self.drehgeschwindigkeit = drehgeschwindigkeit
         self.textur = textur
         self.position = position

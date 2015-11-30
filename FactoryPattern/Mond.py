@@ -21,7 +21,10 @@ class Mond(object):
         self.eigenrotationswinkel = rotationswinkel[2]
         self.groesse = groesse
         self.rotationsrichtung = rotationsrichtung
-        self.rotationsgeschwindigkeit = rotationsgeschwindigkeit
+        self.rotationsurgeschwindigkeit = rotationsgeschwindigkeit
+        self.rotationsgeschwindigkeit = [1,1]
+        self.rotationsgeschwindigkeit[0] = rotationsgeschwindigkeit[0]
+        self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
         self.textur = textur
         self.position = position
         self.stern = stern
@@ -74,5 +77,5 @@ class Mond(object):
         self.planetgeschwindigkeit = planetgeschwindigkeit
 
     def setGeschwindigkeitsfaktor(self,geschwindigkeit):
-        self.rotationsgeschwindigkeit[0] *= geschwindigkeit
-        self.rotationsgeschwindigkeit[1] *= geschwindigkeit
+        self.rotationsgeschwindigkeit[0] = round(self.rotationsurgeschwindigkeit[0] * geschwindigkeit,3)
+        self.rotationsgeschwindigkeit[1] = round(self.rotationsurgeschwindigkeit[1] * geschwindigkeit,3)

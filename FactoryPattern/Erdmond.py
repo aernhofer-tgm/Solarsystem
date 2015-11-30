@@ -14,6 +14,9 @@ class Erdmond(Mond):
         self.eigenrotationswinkel=1
         self.groesse = groesse
         self.rotationsrichtung = rotationsrichtung
-        self.rotationsgeschwindigkeit = rotationsgeschwindigkeit
+        self.rotationsurgeschwindigkeit = rotationsgeschwindigkeit
+        self.rotationsgeschwindigkeit = [1,1]
+        self.rotationsgeschwindigkeit[0] = rotationsgeschwindigkeit[0]
+        self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
         self.textur = textur
         self.position = position
