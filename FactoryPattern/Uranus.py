@@ -1,8 +1,8 @@
 __author__ = 'jakubkopec'
 """
-Mars
+Erde
 ------------------------------------------------------------------------------------------
-Hier sollen bestimmte Eigenschaften vom Mars festgelegt werden.
+Hier sollen bestimmte Eigenschaften der Erde festgelegt werden.
 """
 from FactoryPattern.Planet import Planet
 
@@ -11,7 +11,7 @@ from OpenGL.GLU import *
 
 from Textur.Textur import Textur
 
-class Mars(Planet):
+class Uranus(Planet):
 
-    def __init__(self, groesse = 0.8, rotationswinkel=[1,1],rotationspunkt=[0,0,0], position = [10.5,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-2,-2], textur = "mars" ):
+    def __init__(self,groesse = 1, rotationswinkel=[1,1],rotationspunkt=[0,0,0], position = [21,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-2,-1.5], textur = "uranus" ):
         super().__init__(groesse,rotationswinkel, rotationspunkt, position, rotationsrichtung, rotationsgeschwindigkeit, textur)

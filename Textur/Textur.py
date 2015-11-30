@@ -14,13 +14,23 @@ class Textur(object):
 
     def getPfad(art):
         if(art=="sonne"):
-            return "../texturen/sun.gif"
-        elif(art=="erde"):
-            return "../texturen/erde2.jpg"
-        elif(art=="mars"):
-            return "../texturen/mars2.jpg"
+            return "../texturen/sonne.jpg"
+        elif(art=="venus"):
+            return "../texturen/venus.jpg"
         elif(art=="mond"):
             return "../texturen/mond.jpg"
+        elif(art=="erde"):
+            return "../texturen/erde.jpg"
+        elif(art=="mars"):
+            return "../texturen/mars.jpg"
+        elif(art=="jupiter"):
+            return "../texturen/jupiter.jpg"
+        elif(art=="saturn"):
+            return "../texturen/saturn.jpg"
+        elif(art=="uranus"):
+            return "../texturen/uranus.jpg"
+        elif(art=="neptun"):
+            return "../texturen/neptun.jpg"
 
     def laden(dateipfad):
         if type(dateipfad) is str:

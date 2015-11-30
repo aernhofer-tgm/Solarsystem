@@ -1,7 +1,12 @@
 from FactoryPattern.Erde import Erde
 from FactoryPattern.Erdmond import Erdmond
+from FactoryPattern.Jupiter import Jupiter
 from FactoryPattern.Mars import Mars
+from FactoryPattern.Neptun import Neptun
+from FactoryPattern.Saturn import Saturn
 from FactoryPattern.Sonne import Sonne
+from FactoryPattern.Uranus import Uranus
+from FactoryPattern.Venus import Venus
 import Solarsystem
 
 __author__ = 'Andi Ernhofer'
@@ -66,19 +71,39 @@ s.__init__()
 sonne = Sonne()
 sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
 
+venus = Venus()
+venus.setRotationspunkt(sonne.getPosition())
+venus.setGeschwindigkeitsfaktor(geschwindigkeit)
+
 erde = Erde()
 erde.setRotationspunkt(sonne.getPosition())
 erde.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-mars = Mars()
-mars.setRotationspunkt(sonne.getPosition())
-mars.setGeschwindigkeitsfaktor(geschwindigkeit)
 
 erdmond = Erdmond()
 erdmond.setStern(sonne.getPosition())
 erdmond.setPlanet(erde.getPosition())
 erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
 erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+mars = Mars()
+mars.setRotationspunkt(sonne.getPosition())
+mars.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+jupiter = Jupiter()
+jupiter.setRotationspunkt(sonne.getPosition())
+jupiter.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+saturn = Saturn()
+saturn.setRotationspunkt(sonne.getPosition())
+saturn.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+uranus = Uranus()
+uranus.setRotationspunkt(sonne.getPosition())
+uranus.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+neptun = Neptun()
+neptun.setRotationspunkt(sonne.getPosition())
+neptun.setGeschwindigkeitsfaktor(geschwindigkeit)
 
 erdgeschwindigkeit = [-10, -1.5]
 
@@ -158,9 +183,15 @@ while not gameExit:
 
     #Objekte zeichnen
     sonne.zeichnen()
+    venus.zeichnen()
     erde.zeichnen()
-    mars.zeichnen()
     erdmond.zeichnen()
+    mars.zeichnen()
+    jupiter.zeichnen()
+    saturn.zeichnen()
+    uranus.zeichnen()
+    neptun.zeichnen()
+
 
     glLoadIdentity()
     #Rote Achse -- X-Achse

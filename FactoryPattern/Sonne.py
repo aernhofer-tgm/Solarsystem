@@ -13,7 +13,7 @@ from Textur.Textur import Textur
 
 class Sonne(Stern):
 
-    def __init__(self, groesse = 3, position = [0,0,0],drehrichtung = [0,0,1],drehgeschwindigkeit = -0.3, textur = "sonne" ):
+    def __init__(self, groesse = 3.5, position = [0,0,0],drehrichtung = [0,0,1],drehgeschwindigkeit = -0.3, textur = "sonne" ):
         self.sonne = 1
         self.groesse = groesse
         self.drehrichtung = drehrichtung
