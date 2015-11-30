@@ -15,7 +15,7 @@ class Mond(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def __init__(self, planetgeschwindigkeit, groesse, stern, planet, rotationswinkel, position,rotationsrichtung,rotationsgeschwindigkeit,textur):
+    def __init__(self, groesse, rotationswinkel, position,rotationsrichtung,rotationsgeschwindigkeit,textur):
         self.rotationswinkel = rotationswinkel[0]
         self.planetrotationswinkel = rotationswinkel[1]
         self.eigenrotationswinkel = rotationswinkel[2]
@@ -27,9 +27,9 @@ class Mond(object):
         self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
         self.textur = textur
         self.position = position
-        self.stern = stern
-        self.planet = planet
-        self.planetgeschwindigkeit = planetgeschwindigkeit
+        #self.stern = stern
+        #self.planet = planet
+        #self.planetgeschwindigkeit = planetgeschwindigkeit
 
     def zeichnen(self):
 
