@@ -43,14 +43,14 @@ class Mond(object):
         #zum Planeten positionieren
         glTranslatef(self.planet[0],self.planet[1],self.planet[2])
         self.planetrotationswinkel = self.planetrotationswinkel + self.rotationsgeschwindigkeit[0]
-        glRotatef(self.rotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
+        glRotatef(self.planetrotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
 
         #Mond positionieren
         glTranslatef(self.position[0],self.position[1],self.position[2])
 
         #Rotation um sich selbst
         self.eigenrotationswinkel = self.eigenrotationswinkel + self.rotationsgeschwindigkeit[1]
-        glRotatef(self.rotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
+        glRotatef(self.eigenrotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
 
         #Textur laden
         textur_sonne = Textur.laden(Textur.getPfad(self.textur))

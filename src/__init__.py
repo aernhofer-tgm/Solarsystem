@@ -13,7 +13,8 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
 from Solarsystem import *
-import sys
+
+topanischt = False
 
 pygame.init()
 
@@ -46,10 +47,12 @@ glLoadIdentity()
 
 
 gluPerspective(45,(display_width/display_height),0.1,100)
-#Seitenansicht
-#gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, 1)
-#Obenansicht
-gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
+if topanischt:
+    #Obenansicht
+    gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
+else:
+    #Seitenansicht
+    gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, 1)
 glMatrixMode(GL_MODELVIEW)
 
 
