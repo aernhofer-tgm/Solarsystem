@@ -15,7 +15,7 @@ from OpenGL.GL import *
 from Solarsystem import *
 
 #Config
-topanischt = True
+topansicht = True
 geschwindigkeit = 1
 
 pygame.init()
@@ -49,7 +49,7 @@ glLoadIdentity()
 
 
 gluPerspective(45,(display_width/display_height),0.1,100)
-if topanischt:
+if topansicht:
     #Obenansicht
     gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
 else:
@@ -79,6 +79,8 @@ erdmond.setStern(sonne.getPosition())
 erdmond.setPlanet(erde.getPosition())
 erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
 erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+erdgeschwindigkeit = [-10, -1.5]
 
 #create a while loop for as long as the game gets quitted
 while not gameExit:
@@ -114,17 +116,40 @@ while not gameExit:
 
             elif event.key == pygame.K_p:
                 if geschwindigkeit != 0:
+                    geschwindigkeitsfaktoralt = geschwindigkeit
+                    sonnengeschwindigkeit = sonne.getGeschwindigkeit()
+                    #erdgeschwindigkeit = erde.getGeschwindigkeit()
+                    print(erdgeschwindigkeit)
+                    marsgeschwindigkeit = mars.getGeschwindigkeit()
                     geschwindigkeit = 0
                 else:
-                    geschwindigkeit = 1
-                    print(geschwindigkeit)
+                    sonne.setGeschwindigkeit(sonnengeschwindigkeit)
+                    print(erdgeschwindigkeit)
+                    erde.setGeschwindigkeit(erdgeschwindigkeit)
+                    mars.setGeschwindigkeit(marsgeschwindigkeit)
+                    geschwindigkeit = geschwindigkeitsfaktoralt
 
-                #Geschindigkeit updaten
+                #Geschindigkeit updatens
                 sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
                 erde.setGeschwindigkeitsfaktor(geschwindigkeit)
                 mars.setGeschwindigkeitsfaktor(geschwindigkeit)
                 erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
                 erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
+
+            elif event.key == pygame.K_k:
+                glMatrixMode(GL_PROJECTION)
+                glLoadIdentity()
+                gluPerspective(45,(display_width/display_height),0.1,100)
+
+                if topansicht==False:
+                    #Obenansicht
+                    topansicht = True
+                    gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
+                else:
+                    #Seitenansicht
+                    topansicht = False
+                    gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, 1)
+                glMatrixMode(GL_MODELVIEW)
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     glShadeModel(GL_SMOOTH)

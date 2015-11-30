@@ -62,9 +62,16 @@ class Planet(object):
     def getPosition(self):
         return self.position
 
+    def getGeschwindigkeit(self):
+        return self.rotationsgeschwindigkeit
+
+    def setGeschwindigkeit(self, geschwindigkeit):
+        self.rotationsgeschwindigkeit = geschwindigkeit
+        #print(self.rotationsgeschwindigkeit)
+
     def setGeschwindigkeitsfaktor(self,geschwindigkeit):
-        self.rotationsgeschwindigkeit[0] = (self.rotationsgeschwindigkeit[0] + 0.1) * geschwindigkeit
-        self.rotationsgeschwindigkeit[0] = (self.rotationsgeschwindigkeit[1] + 0.1) * geschwindigkeit
+        self.rotationsgeschwindigkeit[0] *= geschwindigkeit
+        self.rotationsgeschwindigkeit[1] *= geschwindigkeit
 
     @abstractmethod
     def addMond(self):

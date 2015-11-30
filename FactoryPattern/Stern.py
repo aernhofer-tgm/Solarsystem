@@ -52,6 +52,8 @@ class Stern(object):
     def setGeschwindigkeitsfaktor(self,geschwindigkeit):
         self.drehgeschwindigkeit *= geschwindigkeit
 
-    @abstractmethod
-    def addPlanet(self):
-        pass
+    def getGeschwindigkeit(self):
+        return self.drehgeschwindigkeit
+
+    def setGeschwindigkeit(self,geschwindigkeit):
+        self.drehgeschwindigkeit = geschwindigkeit
