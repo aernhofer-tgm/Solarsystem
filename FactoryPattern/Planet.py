@@ -36,13 +36,13 @@ class Planet(object):
         #Rotationspunkt festlegen
         glTranslatef(self.rotationspunkt[0],self.rotationspunkt[1],self.rotationspunkt[2])
         #Rotation um die Sonne
-        self.rotationswinkel = self.rotationswinkel + self.rotationsgeschwindigkeit[0]
+        self.rotationswinkel = (self.rotationswinkel + self.rotationsgeschwindigkeit[0])%360
         glRotatef(self.rotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
 
         #Erde positionieren
         glTranslatef(self.position[0],self.position[1],self.position[2])
         #Rotation um sich selbst
-        self.eigenrotationswinkel = self.eigenrotationswinkel + self.rotationsgeschwindigkeit[1]
+        self.eigenrotationswinkel = (self.eigenrotationswinkel + self.rotationsgeschwindigkeit[1])%360
         glRotatef(self.rotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
 
         #Textur laden
