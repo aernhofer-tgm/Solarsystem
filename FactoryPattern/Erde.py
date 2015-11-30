@@ -13,15 +13,5 @@ from Textur.Textur import Textur
 
 class Erde(Planet):
 
-    def __init__(self, groesse = 1,rotationspunkt=[0,0,0], position = [5,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-10,-1.5], textur = "erde" ):
-        self.rotationswinkel = 1
-        self.eigenrotationswinkel = 1
-        self.groesse = groesse
-        self.rotationsrichtung = rotationsrichtung
-        self.rotationsurgeschwindigkeit = rotationsgeschwindigkeit
-        self.rotationsgeschwindigkeit = [1,1]
-        self.rotationsgeschwindigkeit[0] = rotationsgeschwindigkeit[0]
-        self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
-        self.textur = textur
-        self.position = position
-        self.rotationspunkt = rotationspunkt
+    def __init__(self,groesse = 1, rotationswinkel=[1,1],rotationspunkt=[0,0,0], position = [5,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-10,-1.5], textur = "erde" ):
+        super().__init__(groesse,rotationswinkel, rotationspunkt, position, rotationsrichtung, rotationsgeschwindigkeit, textur)

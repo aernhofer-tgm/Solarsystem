@@ -118,7 +118,7 @@ while not gameExit:
                 if geschwindigkeit != 0:
                     geschwindigkeitsfaktoralt = geschwindigkeit
                     sonnengeschwindigkeit = sonne.getGeschwindigkeit()
-                    #erdgeschwindigkeit = erde.getGeschwindigkeit()
+                    erdgeschwindigkeit = erde.getGeschwindigkeit()
                     print(erdgeschwindigkeit)
                     marsgeschwindigkeit = mars.getGeschwindigkeit()
                     geschwindigkeit = 0

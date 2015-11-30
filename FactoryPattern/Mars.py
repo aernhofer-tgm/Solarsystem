@@ -13,14 +13,5 @@ from Textur.Textur import Textur
 
 class Mars(Planet):
 
-    def __init__(self, groesse = 0.8, position = [9,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-1.3,-2], textur = "mars" ):
-        self.rotationswinkel = 1
-        self.eigenrotationswinkel=1
-        self.groesse = groesse
-        self.rotationsrichtung = rotationsrichtung
-        self.rotationsurgeschwindigkeit = rotationsgeschwindigkeit
-        self.rotationsgeschwindigkeit = [1,1]
-        self.rotationsgeschwindigkeit[0] = rotationsgeschwindigkeit[0]
-        self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
-        self.textur = textur
-        self.position = position
+    def __init__(self, groesse = 0.8, rotationswinkel=[1,1],rotationspunkt=[0,0,0], position = [9,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-1.3,-2], textur = "mars" ):
+        super().__init__(groesse,rotationswinkel, rotationspunkt, position, rotationsrichtung, rotationsgeschwindigkeit, textur)
