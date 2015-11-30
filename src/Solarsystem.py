@@ -40,7 +40,7 @@ class Solarsystem(object):
         #Eigenrotation
         glRotatef(self.erde,0,0,1)
         #Textur laden
-        textur_erde = Textur.laden("../texturen/erde.jpg")
+        textur_erde = Textur.laden("../texturen/erde2.jpg")
         #Erde zeichnen
         AstronomischesObjekt.erde(textur_erde)
 
@@ -52,7 +52,7 @@ class Solarsystem(object):
         #Eigenrotation
         glRotatef(self.mars,0,0,1)
         #Textur laden
-        textur_mars = Textur.laden("../texturen/mars.jpg")
+        textur_mars = Textur.laden("../texturen/mars2.jpg")
         #Mars zeichnen
         AstronomischesObjekt.mars(textur_mars)
 

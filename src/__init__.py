@@ -1,3 +1,7 @@
+from FactoryPattern.Erde import Erde
+from FactoryPattern.Erdmond import Erdmond
+from FactoryPattern.Mars import Mars
+from FactoryPattern.Sonne import Sonne
 import Solarsystem
 
 __author__ = 'Andi Ernhofer'
@@ -53,6 +57,18 @@ s = Solarsystem()
 
 s.__init__()
 
+sonne = Sonne()
+
+erde = Erde()
+erde.setRotationspunkt(sonne.getPosition())
+
+mars = Mars()
+mars.setRotationspunkt(sonne.getPosition())
+
+erdmond = Erdmond()
+erdmond.setStern(sonne.getPosition())
+erdmond.setPlanet(erde.getPosition())
+erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
 
 #create a while loop for as long as the game gets quitted
 while not gameExit:
@@ -62,8 +78,14 @@ while not gameExit:
             #while ends after this point
             gameExit = True
 
-
-    s.zeichnen()
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+    glShadeModel(GL_SMOOTH)
+    glEnable(GL_CULL_FACE)
+    glEnable(GL_DEPTH_TEST)
+    sonne.zeichnen()
+    erde.zeichnen()
+    mars.zeichnen()
+    erdmond.zeichnen()
 
     glLoadIdentity()
     #Rote Achse -- X-Achse
@@ -96,7 +118,7 @@ while not gameExit:
     pygame.display.flip()
 
     #set frame rate to 30
-    clock.tick(30)
+    clock.tick(60)
 
 #quitting pygame
 pygame.quit()
