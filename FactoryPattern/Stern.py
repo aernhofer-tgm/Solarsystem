@@ -14,7 +14,7 @@ class Stern(object):
 
     @abstractmethod
     def __init__(self,groesse,position,drehrichtung,drehgeschwindigkeit,textur):
-        self.sonne = 1
+        self.winkel = 1
         self.groesse = groesse
         self.drehrichtung = drehrichtung
         self.drehurgeschwindigkeit = drehgeschwindigkeit
@@ -30,9 +30,9 @@ class Stern(object):
         #Sonne positionieren
         glTranslatef(self.position[0],self.position[1],self.position[2])
 
-        self.sonne = self.sonne + self.drehgeschwindigkeit
+        self.winkel = self.winkel + self.drehgeschwindigkeit
 
-        glRotatef(self.sonne,self.drehrichtung[0],self.drehrichtung[1],self.drehrichtung[2])
+        glRotatef(self.winkel,self.drehrichtung[0],self.drehrichtung[1],self.drehrichtung[2])
 
         #Textur laden
         textur_sonne = Textur.laden(Textur.getPfad(self.textur))
