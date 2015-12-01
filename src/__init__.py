@@ -118,24 +118,32 @@ while not gameExit:
 
             if event.key == pygame.K_s:
                 geschwindigkeit = round(geschwindigkeit+0.1,1)
-                print("langsamer" + str(geschwindigkeit))
 
                 #Geschindigkeit updaten
                 sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
+                venus.setGeschwindigkeitsfaktor(geschwindigkeit)
                 erde.setGeschwindigkeitsfaktor(geschwindigkeit)
                 mars.setGeschwindigkeitsfaktor(geschwindigkeit)
+                jupiter.setGeschwindigkeitsfaktor(geschwindigkeit)
+                saturn.setGeschwindigkeitsfaktor(geschwindigkeit)
+                uranus.setGeschwindigkeitsfaktor(geschwindigkeit)
+                neptun.setGeschwindigkeitsfaktor(geschwindigkeit)
                 erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
                 erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
 
             elif event.key == pygame.K_l:
                 if geschwindigkeit != 0:
                     geschwindigkeit = round(geschwindigkeit-0.1,1)
-                    print("langsamer" + str(geschwindigkeit))
 
                     #Geschindigkeit updaten
                     sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    venus.setGeschwindigkeitsfaktor(geschwindigkeit)
                     erde.setGeschwindigkeitsfaktor(geschwindigkeit)
                     mars.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    jupiter.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    saturn.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    uranus.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    neptun.setGeschwindigkeitsfaktor(geschwindigkeit)
                     erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
                     erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
 
