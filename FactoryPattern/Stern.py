@@ -21,6 +21,8 @@ class Stern(object):
         self.drehgeschwindigkeit = drehgeschwindigkeit
         self.textur = textur
         self.position = position
+        #Textur laden
+        self.textur_stern = Textur.laden(Textur.getPfad(self.textur))
 
     def zeichnen(self):
 
@@ -34,11 +36,9 @@ class Stern(object):
 
         glRotatef(self.winkel,self.drehrichtung[0],self.drehrichtung[1],self.drehrichtung[2])
 
-        #Textur laden
-        textur_sonne = Textur.laden(Textur.getPfad(self.textur))
 
         #Textur uebernehmen
-        glBindTexture(GL_TEXTURE_2D, textur_sonne)
+        glBindTexture(GL_TEXTURE_2D, self.textur_stern)
         quadratic = gluNewQuadric()
         gluQuadricNormals(quadratic, GLU_SMOOTH)
         gluQuadricTexture(quadratic, GL_TRUE)

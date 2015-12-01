@@ -27,6 +27,8 @@ class Mond(object):
         self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
         self.textur = textur
         self.position = position
+        #Textur laden
+        self.textur_mond = Textur.laden(Textur.getPfad(self.textur))
         #self.stern = stern
         #self.planet = planet
         #self.planetgeschwindigkeit = planetgeschwindigkeit
@@ -55,11 +57,9 @@ class Mond(object):
         self.eigenrotationswinkel = self.eigenrotationswinkel + self.rotationsgeschwindigkeit[1]
         glRotatef(self.eigenrotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
 
-        #Textur laden
-        textur_sonne = Textur.laden(Textur.getPfad(self.textur))
 
         #Textur uebernehmen
-        glBindTexture(GL_TEXTURE_2D, textur_sonne)
+        glBindTexture(GL_TEXTURE_2D, self.textur_mond)
         quadratic = gluNewQuadric()
         gluQuadricNormals(quadratic, GLU_SMOOTH)
         gluQuadricTexture(quadratic, GL_TRUE)

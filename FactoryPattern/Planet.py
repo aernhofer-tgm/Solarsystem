@@ -27,6 +27,8 @@ class Planet(object):
         self.textur = textur
         self.position = position
         self.rotationspunkt = rotationspunkt
+        #Textur laden
+        self.textur_planet = Textur.laden(Textur.getPfad(self.textur))
 
     def zeichnen(self):
 
@@ -45,10 +47,8 @@ class Planet(object):
         self.eigenrotationswinkel = (self.eigenrotationswinkel + self.rotationsgeschwindigkeit[1])%360
         glRotatef(self.rotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
 
-        #Textur laden
-        textur_sonne = Textur.laden(Textur.getPfad(self.textur))
         #Textur uebernehmen
-        glBindTexture(GL_TEXTURE_2D, textur_sonne)
+        glBindTexture(GL_TEXTURE_2D, self.textur_planet)
         quadratic = gluNewQuadric()
         gluQuadricNormals(quadratic, GLU_SMOOTH)
         gluQuadricTexture(quadratic, GL_TRUE)
