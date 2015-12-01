@@ -7,6 +7,7 @@ from FactoryPattern.Saturn import Saturn
 from FactoryPattern.Sonne import Sonne
 from FactoryPattern.Uranus import Uranus
 from FactoryPattern.Venus import Venus
+from math import *
 import Solarsystem
 
 __author__ = 'Andi Ernhofer'
@@ -67,6 +68,7 @@ s = Solarsystem()
 
 s.__init__()
 
+zoom = 0
 
 sonne = Sonne()
 sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
@@ -115,6 +117,24 @@ while not gameExit:
             #while ends after this point
             gameExit = True
         elif event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_PLUS:
+                zoom -= 1
+                glMatrixMode(GL_PROJECTION)
+                glLoadIdentity()
+                gluPerspective(45,(display_width/display_height),0.1,100)
+
+                gluLookAt(0, 0, 30 + zoom, 0, 0, 0, 0, 1, 0)
+                glMatrixMode(GL_MODELVIEW)
+
+            if event.key == pygame.K_MINUS:
+                zoom += 1
+                glMatrixMode(GL_PROJECTION)
+                glLoadIdentity()
+                gluPerspective(45,(display_width/display_height),0.1,100)
+
+                gluLookAt(0, 0, 30 + zoom, 0, 0, 0, 0, 1, 0)
+                glMatrixMode(GL_MODELVIEW)
 
             if event.key == pygame.K_s:
                 geschwindigkeit = round(geschwindigkeit+0.1,1)
@@ -177,11 +197,11 @@ while not gameExit:
                 if topansicht==False:
                     #Obenansicht
                     topansicht = True
-                    gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
+                    gluLookAt(0, 0, 60, 0, 0, 0, 0, 1, 0)
                 else:
                     #Seitenansicht
                     topansicht = False
-                    gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, 1)
+                    gluLookAt(0, 50, 10, 0, 0, 0, 0, 0, 1)
                 glMatrixMode(GL_MODELVIEW)
 
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
@@ -226,6 +246,25 @@ while not gameExit:
     glBegin(GL_LINES)
     glVertex3f(0, 0, 0)
     glVertex3f(0, 0, 100)
+    glEnd()
+
+
+    posx, posy = 0,0
+    sides = 200
+    radius = 5
+    glBegin(GL_LINE_LOOP)
+    for i in range(1000):
+        cosine= radius * cos(i*2*pi/sides) + posx
+        sine  = radius * sin(i*2*pi/sides) + posy
+        glVertex3f(cosine,sine,0)
+    glEnd()
+
+    radius = 8
+    glBegin(GL_LINE_LOOP)
+    for i in range(1000):
+        cosine= radius * cos(i*2*pi/sides) + posx
+        sine  = radius * sin(i*2*pi/sides) + posy
+        glVertex3f(cosine,sine,0)
     glEnd()
 
     #update the screen
