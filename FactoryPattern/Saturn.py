@@ -8,5 +8,5 @@ from FactoryPattern.Planet import Planet
 
 class Saturn(Planet):
 
-    def __init__(self,groesse = 1.8, rotationswinkel=[1,1],rotationspunkt=[0,0,0], position = [18,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-2,-1.5], textur = "saturn" ):
+    def __init__(self,groesse = 1.8, rotationswinkel=[1,1],rotationspunkt=[0,0,0], position = [17.7,0,0],rotationsrichtung = [0,0,1],rotationsgeschwindigkeit = [-2,-1.5], textur = "saturn" ):
         super().__init__(groesse,rotationswinkel, rotationspunkt, position, rotationsrichtung, rotationsgeschwindigkeit, textur)

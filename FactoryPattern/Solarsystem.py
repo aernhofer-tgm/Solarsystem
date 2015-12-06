@@ -107,7 +107,6 @@ class Solarsystem(SSI):
             self.geschwindigkeit = 0
             self.updateSpeed(0)
         else:
-            print(self.geschwindigkeit_alt)
             self.geschwindigkeit = self.geschwindigkeit_alt
             self.updateSpeed(0)
 
@@ -140,17 +139,17 @@ class Solarsystem(SSI):
         glEnd()
 
     def bahnenZeichnen(self):
+        self.bahnZeichnen(5)
+        self.bahnZeichnen(8)
+        self.bahnZeichnen(10.5)
+        self.bahnZeichnen(13.5)
+        self.bahnZeichnen(17.7)
+        self.bahnZeichnen(21)
+        self.bahnZeichnen(24)
+
+    def bahnZeichnen(self,radius):
         posx, posy = 0,0
         sides = 200
-        radius = 5
-        glBegin(GL_LINE_LOOP)
-        for i in range(1000):
-            cosine= radius * cos(i*2*pi/sides) + posx
-            sine  = radius * sin(i*2*pi/sides) + posy
-            glVertex3f(cosine,sine,0)
-        glEnd()
-
-        radius = 8
         glBegin(GL_LINE_LOOP)
         for i in range(1000):
             cosine= radius * cos(i*2*pi/sides) + posx

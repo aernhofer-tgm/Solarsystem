@@ -4,23 +4,9 @@ from Kamera import Kamera
 __author__ = 'Jakub Kopec'
 
 import pygame
-
 from pygame.locals import *
-from OpenGL.GLU import *
-from OpenGL.GL import *
-
-#Config
-topansicht = True
-geschwindigkeit = 1
-
-zoom = 1
 
 pygame.init()
-
-#define colors
-white = (255,255,255)
-black = (0,0,0)
-yellow = (255,255,0)
 
 #define display size
 display_width = 1280
@@ -44,12 +30,31 @@ kamera = Kamera()
 #initialize the solar system
 solarsystem = Solarsystem()
 
-erdgeschwindigkeit = [-10, -1.5]
-
-old_speed = 1
-
 #create a while loop for as long as the game gets quitted
 while not gameExit:
+    keys = pygame.key.get_pressed()  #checking pressed keys
+    if keys[pygame.K_PLUS]:
+        if kamera.upY == 1:
+            kamera.eyeZ -= 1
+            kamera.update()
+        elif kamera.upZ == 1:
+            kamera.eyeY -= 1
+            kamera.update()
+
+    if keys[pygame.K_MINUS]:
+        if kamera.upY == 1:
+            kamera.eyeZ += 1
+            kamera.update()
+        elif kamera.upZ == 1:
+            kamera.eyeY += 1
+            kamera.update()
+
+    if keys[pygame.K_s]:
+        solarsystem.updateSpeed(0.1)
+
+    if keys[pygame.K_l]:
+        solarsystem.updateSpeed(-0.1)
+
     for event in pygame.event.get():
         #what should happen if someone quitts the game?
         if event.type == pygame.QUIT:
@@ -64,29 +69,7 @@ while not gameExit:
 
         elif event.type == pygame.KEYDOWN:
 
-            if event.key == pygame.K_PLUS:
-                if kamera.upY == 1:
-                    kamera.eyeZ -= 1
-                    kamera.update()
-                elif kamera.upZ == 1:
-                    kamera.eyeY -= 1
-                    kamera.update()
-
-            if event.key == pygame.K_MINUS:
-                if kamera.upY == 1:
-                    kamera.eyeZ += 1
-                    kamera.update()
-                elif kamera.upZ == 1:
-                    kamera.eyeY += 1
-                    kamera.update()
-
-            if event.key == pygame.K_s:
-                solarsystem.updateSpeed(0.1)
-
-            elif event.key == pygame.K_l:
-                solarsystem.updateSpeed(-0.1)
-
-            elif event.key == pygame.K_p:
+            if event.key == pygame.K_p:
                 if solarsystem.geschwindigkeit != 0:
                     solarsystem.pause(True)
                 else:
