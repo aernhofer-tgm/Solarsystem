@@ -10,14 +10,17 @@ from pygame.locals import *
 STEUERUNG
 ---------
 
-k           Kammera Ansicht ändern
+k           Kammera Ansicht aendern
 p           Pause
 .           Schneller
 ,           langsamer
 Pfeiltasten Bewegen
-wasd        Ansicht ändern
+wasd        Ansicht aendern
 +           Ranzoomen
 -           Wegzoomen
+esc         Beenden
+linkemaus   reinzoomen
+rechtemaus  wegzoomen
 """
 
 pygame.init()
@@ -44,9 +47,42 @@ kamera = Kamera()
 #initialize the solar system
 solarsystem = Solarsystem()
 
+#Maus ausblenden
+pygame.mouse.set_visible(False)
+
+#Mauszeiger setzen
+pygame.mouse.get_pos(620,365)
+
 #create a while loop for as long as the game gets quitted
 while not gameExit:
     keys = pygame.key.get_pressed()  #checking pressed keys
+    mousebutton = pygame.mouse.get_pressed()
+
+    #print(pygame.mouse.get_pos())
+
+    #drehung mit der maus
+    drehung = pygame.mouse.get_rel()
+    kamera.centerX += drehung[0]/40
+    kamera.centerY += -drehung[1]/40
+    kamera.update()
+
+    #linksklick Maus
+    if mousebutton[0]:
+        if kamera.upY == 1:
+            kamera.eyeZ -= 0.3
+            kamera.update()
+        elif kamera.upZ == 1:
+            kamera.eyeY -= 0.3
+            kamera.update()
+
+    #Rechtsklick Maus
+    if mousebutton[2]:
+        if kamera.upY == 1:
+            kamera.eyeZ += 0.3
+            kamera.update()
+        elif kamera.upZ == 1:
+            kamera.eyeY += 0.3
+            kamera.update()
 
     #Zoom
     if keys[pygame.K_PLUS]:
@@ -138,6 +174,9 @@ while not gameExit:
                     kamera.upY = 1
                     kamera.eyeZ = 30
                     kamera.update()
+
+            elif event.key == pygame.K_ESCAPE:
+                gameExit = True
 
     #Objekte zeichnen
     solarsystem.zeichnen()
