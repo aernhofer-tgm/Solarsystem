@@ -30,9 +30,6 @@ class Solarsystem(SSI):
         self.venus = Venus()
         self.venus.setRotationspunkt(self.sonne.getPosition())
 
-        self.venus = Jupiter()
-        self.venus.setRotationspunkt(self.sonne.getPosition())
-
         self.erde = Erde()
         self.erde.setRotationspunkt(self.sonne.getPosition())
 
@@ -87,7 +84,7 @@ class Solarsystem(SSI):
 
     def updateSpeed(self,faktor):
 
-        self.geschwindigkeit = self.geschwindigkeit+faktor
+        self.geschwindigkeit = round(self.geschwindigkeit+faktor,1)
 
         self.sonne.setGeschwindigkeitsfaktor(self.geschwindigkeit)
         self.venus.setGeschwindigkeitsfaktor(self.geschwindigkeit)

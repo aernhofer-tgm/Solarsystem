@@ -53,7 +53,8 @@ while not gameExit:
         solarsystem.updateSpeed(0.1)
 
     if keys[pygame.K_l]:
-        solarsystem.updateSpeed(-0.1)
+        if solarsystem.geschwindigkeit != 0:
+            solarsystem.updateSpeed(-0.1)
 
     for event in pygame.event.get():
         #what should happen if someone quitts the game?
