@@ -26,9 +26,13 @@ rechtemaus  wegzoomen
 
 pygame.init()
 
+infoObject = pygame.display.Info()
+#pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
+
 #define display size
 display_width = 1280
 display_height = 720
+fullscreen = False
 
 #creating the game display
 screen = pygame.display.set_mode((display_width,display_height), DOUBLEBUF|OPENGL|RESIZABLE)
@@ -49,10 +53,10 @@ kamera = Kamera()
 solarsystem = Solarsystem()
 
 #Maus ausblenden
-pygame.mouse.set_visible(False)
+#pygame.mouse.set_visible(False)
 
 #Mauszeiger setzen
-pygame.mouse.get_pos(620,365)
+pygame.mouse.set_pos(display_width/2,display_height/2)
 
 #Licht
 licht = Licht()
@@ -66,11 +70,34 @@ while not gameExit:
 
     #print(pygame.mouse.get_pos())
 
-    #drehung mit der maus
     drehung = pygame.mouse.get_rel()
-    kamera.centerX += drehung[0]/40
-    kamera.centerY += -drehung[1]/40
+
+    #print(drehung)
+
+    #Mauszeiger setzen
+    if drehung[0] == 0 and drehung[1] == 0:
+        #pygame.mouse.set_pos(display_width/2,display_height/2)
+        #jakub = pygame.mouse.get_rel()
+        pass
+    else:
+        #drehung mit der maus
+        kamera.centerX += drehung[0]/20
+        kamera.centerY += -drehung[1]/20
+        kamera.update()
+
+    """
+    drehung = pygame.mouse.get_pos()
+    dx = drehung[0]-display_width/2
+    dy = drehung[1]-display_height/2
+
+    kamera.centerX += dx
+    kamera.centerY += dy
     kamera.update()
+
+    #Mauszeiger setzen
+    pygame.mouse.set_pos(display_width/2,display_height/2)
+    """
+
 
     #linksklick Maus
     if mousebutton[0]:
@@ -135,18 +162,22 @@ while not gameExit:
     #Blickwinkel
     if keys[pygame.K_d]:
         kamera.centerX += 1
+        kamera.eyeX += 1
         kamera.update()
 
     if keys[pygame.K_a]:
         kamera.centerX -= 1
+        kamera.eyeX -= 1
         kamera.update()
 
     if keys[pygame.K_w]:
         kamera.centerY += 1
+        kamera.eyeY += 1
         kamera.update()
 
     if keys[pygame.K_s]:
         kamera.centerY -= 1
+        kamera.eyeY -= 1
         kamera.update()
 
     for event in pygame.event.get():
@@ -170,6 +201,10 @@ while not gameExit:
                     solarsystem.pause(False)
 
             elif event.key == pygame.K_k:
+                #Mauszeiger zuruecksetzen
+                pygame.mouse.set_pos(display_width/2,display_height/2)
+                pygame.mouse.get_rel() # Maus hupft sonst nach kamera wechsel
+
                 if kamera.upY == 1:
                     kamera.reset()
                     kamera.upZ = 1
@@ -180,9 +215,22 @@ while not gameExit:
                     kamera.upY = 1
                     kamera.eyeZ = 30
                     kamera.update()
-
             elif event.key == pygame.K_ESCAPE:
                 gameExit = True
+
+            elif event.key == pygame.K_F11:
+                if fullscreen:
+                    fullscreen = False
+                    screen = pygame.display.set_mode((display_width,display_height), DOUBLEBUF|OPENGL|RESIZABLE)
+                    solarsystem = Solarsystem()
+                    kamera.updateScreenSize(display_width,display_height)
+                else:
+                    fullscreen = True
+                    #pygame.display.toggle_fullscreen()
+                    #screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), FULLSCREEN|HWSURFACE|DOUBLEBUF|OPENGL)
+                    screen = pygame.display.set_mode((display_width,display_height), FULLSCREEN|HWSURFACE|DOUBLEBUF|OPENGL)
+                    solarsystem = Solarsystem()
+                    kamera.updateScreenSize(display_width,display_height)
 
     #Objekte zeichnen
     solarsystem.zeichnen()
