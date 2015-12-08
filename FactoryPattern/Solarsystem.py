@@ -1,3 +1,4 @@
+from FactoryPattern.Merkur import Merkur
 from FactoryPattern.Sonne import Sonne
 from FactoryPattern.Venus import Venus
 from FactoryPattern.Erde import Erde
@@ -26,6 +27,9 @@ class Solarsystem(SSI):
     def __init__(self):
 
         self.sonne = Sonne()
+
+        self.merkur = Merkur()
+        self.merkur.setRotationspunkt(self.sonne.getPosition())
 
         self.venus = Venus()
         self.venus.setRotationspunkt(self.sonne.getPosition())
@@ -73,6 +77,7 @@ class Solarsystem(SSI):
 
         #Objekte zeichnen
         self.sonne.zeichnen()
+        self.merkur.zeichnen()
         self.venus.zeichnen()
         self.erde.zeichnen()
         self.erdmond.zeichnen()
@@ -87,6 +92,7 @@ class Solarsystem(SSI):
         self.geschwindigkeit = round(self.geschwindigkeit+faktor,1)
 
         self.sonne.setGeschwindigkeitsfaktor(self.geschwindigkeit)
+        self.merkur.setGeschwindigkeitsfaktor(self.geschwindigkeit)
         self.venus.setGeschwindigkeitsfaktor(self.geschwindigkeit)
         self.erde.setGeschwindigkeitsfaktor(self.geschwindigkeit)
         self.mars.setGeschwindigkeitsfaktor(self.geschwindigkeit)
@@ -137,12 +143,13 @@ class Solarsystem(SSI):
 
     def bahnenZeichnen(self):
         self.bahnZeichnen(5)
-        self.bahnZeichnen(8)
+        self.bahnZeichnen(7.5)
         self.bahnZeichnen(10.5)
         self.bahnZeichnen(13.5)
-        self.bahnZeichnen(17.7)
-        self.bahnZeichnen(21)
-        self.bahnZeichnen(24)
+        self.bahnZeichnen(16.9)
+        self.bahnZeichnen(21.5)
+        self.bahnZeichnen(25)
+        self.bahnZeichnen(27.5)
 
     def bahnZeichnen(self,radius):
         posx, posy = 0,0

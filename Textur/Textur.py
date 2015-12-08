@@ -15,6 +15,8 @@ class Textur(object):
     def getPfad(art):
         if(art=="sonne"):
             return "../texturen/sonne.jpg"
+        elif(art=="merkur"):
+            return "../texturen/merkur.jpg"
         elif(art=="venus"):
             return "../texturen/venus.jpg"
         elif(art=="mond"):
