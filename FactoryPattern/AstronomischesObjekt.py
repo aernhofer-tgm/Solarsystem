@@ -1,3 +1,6 @@
+from FactoryPattern.SSI import SSI
+from abc import ABCMeta, abstractmethod
+
 __author__ = 'jakubkopec'
 
 """
@@ -7,5 +10,7 @@ Das kann entweder ein Stern, ein Planet oder ein Mond sein.
 """
 
 class AstronomischesObjekt(object):
-    def foo(self):
+
+    @abstractmethod
+    def zeichnen(self):
         pass

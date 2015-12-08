@@ -1,3 +1,5 @@
+from FactoryPattern.AstronomischesObjekt import AstronomischesObjekt
+
 __author__ = 'jakubkopec'
 """
 Mond Interface
@@ -11,7 +13,7 @@ from OpenGL.GLU import *
 
 from Textur.Textur import Textur
 
-class Mond(object):
+class Mond(AstronomischesObjekt):
     __metaclass__ = ABCMeta
 
     @abstractmethod

@@ -1,3 +1,5 @@
+from FactoryPattern.AstronomischesObjekt import AstronomischesObjekt
+
 __author__ = 'jakubkopec'
 """
 Stern Interface
@@ -5,11 +7,14 @@ Stern Interface
 Interface für alle Sterne.
 """
 from abc import ABCMeta, abstractmethod
+
 from OpenGL.GL import *
 from OpenGL.GLU import *
+
 from Textur.Textur import Textur
 
-class Stern(object):
+
+class Stern(AstronomischesObjekt):
     __metaclass__ = ABCMeta
 
     @abstractmethod

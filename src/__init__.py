@@ -1,42 +1,41 @@
-from FactoryPattern.Erde import Erde
-from FactoryPattern.Erdmond import Erdmond
-from FactoryPattern.Jupiter import Jupiter
-from FactoryPattern.Mars import Mars
-from FactoryPattern.Neptun import Neptun
-from FactoryPattern.Saturn import Saturn
-from FactoryPattern.Sonne import Sonne
-from FactoryPattern.Uranus import Uranus
-from FactoryPattern.Venus import Venus
-from math import *
-import Solarsystem
+from FactoryPattern.Solarsystem import Solarsystem
+from Kamera import Kamera
+from licht import Licht
 
-__author__ = 'Andi Ernhofer'
+__author__ = 'Jakub Kopec'
 
 import pygame
-
 from pygame.locals import *
-from OpenGL.GLUT import *
-from OpenGL.GLU import *
-from OpenGL.GL import *
-from Solarsystem import *
 
-#Config
-topansicht = True
-geschwindigkeit = 1
+"""
+STEUERUNG
+---------
+
+k           Kammera Ansicht aendern
+p           Pause
+.           Schneller
+,           langsamer
+Pfeiltasten Bewegen
+wasd        Ansicht aendern
++           Ranzoomen
+-           Wegzoomen
+esc         Beenden
+linkemaus   reinzoomen
+rechtemaus  wegzoomen
+"""
 
 pygame.init()
 
-#define colors
-white = (255,255,255)
-black = (0,0,0)
-yellow = (255,255,0)
+infoObject = pygame.display.Info()
+#pygame.display.set_mode((infoObject.current_w, infoObject.current_h))
 
 #define display size
 display_width = 1280
 display_height = 720
+fullscreen = False
 
 #creating the game display
-screen = pygame.display.set_mode((display_width,display_height), DOUBLEBUF|OPENGL)
+screen = pygame.display.set_mode((display_width,display_height), DOUBLEBUF|OPENGL|RESIZABLE)
 
 #setting the name of the window
 pygame.display.set_caption('Solarsystem')
@@ -48,224 +47,204 @@ gameExit = False
 clock = pygame.time.Clock()
 
 #set the perspective
-glViewport(0, 0, display_width, display_height)
-glMatrixMode(GL_PROJECTION)
-glLoadIdentity()
+kamera = Kamera()
 
+#initialize the solar system
+solarsystem = Solarsystem()
 
+#Maus ausblenden
+#pygame.mouse.set_visible(False)
 
-gluPerspective(45,(display_width/display_height),0.1,100)
-if topansicht:
-    #Obenansicht
-    gluLookAt(0, 0, 30, 0, 0, 0, 0, 1, 0)
-else:
-    #Seitenansicht
-    gluLookAt(0, 30, 0, 0, 0, 0, 0, 0, 1)
-glMatrixMode(GL_MODELVIEW)
+#Mauszeiger setzen
+pygame.mouse.set_pos(display_width/2,display_height/2)
 
+#Licht
+licht = Licht()
+licht.anknipsen()
 
-s = Solarsystem()
-
-s.__init__()
-
-zoom = 0
-
-sonne = Sonne()
-sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-venus = Venus()
-venus.setRotationspunkt(sonne.getPosition())
-venus.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-erde = Erde()
-erde.setRotationspunkt(sonne.getPosition())
-erde.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-erdmond = Erdmond()
-erdmond.setStern(sonne.getPosition())
-erdmond.setPlanet(erde.getPosition())
-erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
-erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-mars = Mars()
-mars.setRotationspunkt(sonne.getPosition())
-mars.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-jupiter = Jupiter()
-jupiter.setRotationspunkt(sonne.getPosition())
-jupiter.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-saturn = Saturn()
-saturn.setRotationspunkt(sonne.getPosition())
-saturn.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-uranus = Uranus()
-uranus.setRotationspunkt(sonne.getPosition())
-uranus.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-neptun = Neptun()
-neptun.setRotationspunkt(sonne.getPosition())
-neptun.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-erdgeschwindigkeit = [-10, -1.5]
 
 #create a while loop for as long as the game gets quitted
 while not gameExit:
+    keys = pygame.key.get_pressed()  #checking pressed keys
+    mousebutton = pygame.mouse.get_pressed()
+
+    #print(pygame.mouse.get_pos())
+
+    drehung = pygame.mouse.get_rel()
+
+    #print(drehung)
+
+    #Mauszeiger setzen
+    if drehung[0] == 0 and drehung[1] == 0:
+        #pygame.mouse.set_pos(display_width/2,display_height/2)
+        #jakub = pygame.mouse.get_rel()
+        pass
+    else:
+
+        #drehung mit der maus
+        kamera.centerX += drehung[0]/20
+        if kamera.upY == 1:
+            kamera.centerY += -drehung[1]/20
+        elif kamera.upZ == 1:
+            kamera.centerZ += -drehung[1]/20
+        kamera.update()
+
+    #linksklick Maus
+    if mousebutton[0]:
+        solarsystem.updateSpeed(0.1)
+
+    #mausradklick
+    if mousebutton[1]:
+        if solarsystem.geschwindigkeit != 0:
+            solarsystem.pause(True)
+        else:
+            solarsystem.pause(False)
+
+    #Rechtsklick Maus
+    if mousebutton[2]:
+        if solarsystem.geschwindigkeit != 0:
+            solarsystem.updateSpeed(-0.1)
+
+    #Zoom
+    if keys[pygame.K_PLUS]:
+        if kamera.upY == 1:
+            kamera.eyeZ -= 1
+            kamera.update()
+        elif kamera.upZ == 1:
+            kamera.eyeY += 1
+            kamera.update()
+
+    if keys[pygame.K_MINUS]:
+        if kamera.upY == 1:
+            kamera.eyeZ += 1
+            kamera.update()
+        elif kamera.upZ == 1:
+            kamera.eyeY -= 1
+            kamera.update()
+
+    #Geschwindigkeit
+    if keys[pygame.K_PERIOD]:
+        solarsystem.updateSpeed(0.1)
+
+    if keys[pygame.K_COMMA]:
+        if solarsystem.geschwindigkeit != 0:
+            solarsystem.updateSpeed(-0.1)
+
+    #Bewegen
+    if keys[pygame.K_RIGHT]:
+        kamera.eyeX += 1
+        kamera.update()
+
+    if keys[pygame.K_LEFT]:
+        kamera.eyeX -= 1
+        kamera.update()
+
+    if keys[pygame.K_UP]:
+        kamera.eyeY += 1
+        kamera.update()
+
+    if keys[pygame.K_DOWN]:
+        kamera.eyeY -= 1
+        kamera.update()
+
+    #Blickwinkel
+    if keys[pygame.K_d]:
+        kamera.centerX += 1
+        kamera.eyeX += 1
+        kamera.update()
+
+    if keys[pygame.K_a]:
+        kamera.centerX -= 1
+        kamera.eyeX -= 1
+        kamera.update()
+
+    if keys[pygame.K_w]:
+        kamera.centerY += 1
+        kamera.eyeY += 1
+        kamera.update()
+
+    if keys[pygame.K_s]:
+        kamera.centerY -= 1
+        kamera.eyeY -= 1
+        kamera.update()
+
     for event in pygame.event.get():
         #what should happen if someone quitts the game?
         if event.type == pygame.QUIT:
             #while ends after this point
             gameExit = True
+
+        elif event.type == VIDEORESIZE:
+            width, height = event.size
+            screen = pygame.display.set_mode((width,height), HWSURFACE|DOUBLEBUF|OPENGL|RESIZABLE)
+            solarsystem = Solarsystem()
+            kamera.updateScreenSize(width,height)
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 4:
+                if kamera.upY == 1:
+                    kamera.eyeZ -= 10
+                    kamera.update()
+                elif kamera.upZ == 1:
+                    kamera.eyeY += 7
+                    kamera.update()
+            if event.button == 5:
+                if kamera.upY == 1:
+                    kamera.eyeZ += 10
+                    kamera.update()
+                elif kamera.upZ == 1:
+                    kamera.eyeY -= 7
+                    kamera.update()
+
         elif event.type == pygame.KEYDOWN:
 
-            if event.key == pygame.K_PLUS:
-                zoom -= 1
-                glMatrixMode(GL_PROJECTION)
-                glLoadIdentity()
-                gluPerspective(45,(display_width/display_height),0.1,100)
-
-                gluLookAt(0, 0, 30 + zoom, 0, 0, 0, 0, 1, 0)
-                glMatrixMode(GL_MODELVIEW)
-
-            if event.key == pygame.K_MINUS:
-                zoom += 1
-                glMatrixMode(GL_PROJECTION)
-                glLoadIdentity()
-                gluPerspective(45,(display_width/display_height),0.1,100)
-
-                gluLookAt(0, 0, 30 + zoom, 0, 0, 0, 0, 1, 0)
-                glMatrixMode(GL_MODELVIEW)
-
-            if event.key == pygame.K_s:
-                geschwindigkeit = round(geschwindigkeit+0.1,1)
-
-                #Geschindigkeit updaten
-                sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
-                venus.setGeschwindigkeitsfaktor(geschwindigkeit)
-                erde.setGeschwindigkeitsfaktor(geschwindigkeit)
-                mars.setGeschwindigkeitsfaktor(geschwindigkeit)
-                jupiter.setGeschwindigkeitsfaktor(geschwindigkeit)
-                saturn.setGeschwindigkeitsfaktor(geschwindigkeit)
-                uranus.setGeschwindigkeitsfaktor(geschwindigkeit)
-                neptun.setGeschwindigkeitsfaktor(geschwindigkeit)
-                erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
-                erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-            elif event.key == pygame.K_l:
-                if geschwindigkeit != 0:
-                    geschwindigkeit = round(geschwindigkeit-0.1,1)
-
-                    #Geschindigkeit updaten
-                    sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    venus.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    erde.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    mars.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    jupiter.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    saturn.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    uranus.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    neptun.setGeschwindigkeitsfaktor(geschwindigkeit)
-                    erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
-                    erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
-
-            elif event.key == pygame.K_p:
-                if geschwindigkeit != 0:
-                    geschwindigkeitsfaktoralt = geschwindigkeit
-                    sonnengeschwindigkeit = sonne.getGeschwindigkeit()
-                    erdgeschwindigkeit = erde.getGeschwindigkeit()
-                    print(erdgeschwindigkeit)
-                    marsgeschwindigkeit = mars.getGeschwindigkeit()
-                    geschwindigkeit = 0
+            if event.key == pygame.K_p:
+                if solarsystem.geschwindigkeit != 0:
+                    solarsystem.pause(True)
                 else:
-                    sonne.setGeschwindigkeit(sonnengeschwindigkeit)
-                    print(erdgeschwindigkeit)
-                    erde.setGeschwindigkeit(erdgeschwindigkeit)
-                    mars.setGeschwindigkeit(marsgeschwindigkeit)
-                    geschwindigkeit = geschwindigkeitsfaktoralt
-
-                #Geschindigkeit updatens
-                sonne.setGeschwindigkeitsfaktor(geschwindigkeit)
-                erde.setGeschwindigkeitsfaktor(geschwindigkeit)
-                mars.setGeschwindigkeitsfaktor(geschwindigkeit)
-                erdmond.setPlanetGeschwindigkeit(erde.getRotationsgeschwindigkeit())
-                erdmond.setGeschwindigkeitsfaktor(geschwindigkeit)
+                    solarsystem.pause(False)
 
             elif event.key == pygame.K_k:
-                glMatrixMode(GL_PROJECTION)
-                glLoadIdentity()
-                gluPerspective(45,(display_width/display_height),0.1,100)
+                #Mauszeiger zuruecksetzen
+                drehung = pygame.mouse.get_rel() # Maus hupft sonst nach kamera wechsel
+                pygame.mouse.set_pos(display_width/2,display_height/2)
+                drehung = pygame.mouse.get_rel() # Maus hupft sonst nach kamera wechsel
 
-                if topansicht==False:
-                    #Obenansicht
-                    topansicht = True
-                    gluLookAt(0, 0, 60, 0, 0, 0, 0, 1, 0)
+                if kamera.upY == 1:
+                    kamera.reset()
+                    kamera.upZ = 1
+                    kamera.eyeY = -50
+                    kamera.update()
+                elif kamera.upZ == 1:
+                    kamera.reset()
+                    kamera.upY = 1
+                    kamera.eyeZ = 30
+                    kamera.update()
+            elif event.key == pygame.K_ESCAPE:
+                gameExit = True
+
+            elif event.key == pygame.K_F11:
+                if fullscreen:
+                    fullscreen = False
+                    screen = pygame.display.set_mode((display_width,display_height), DOUBLEBUF|OPENGL|RESIZABLE)
+                    solarsystem = Solarsystem()
+                    kamera.updateScreenSize(display_width,display_height)
                 else:
-                    #Seitenansicht
-                    topansicht = False
-                    gluLookAt(0, 50, 10, 0, 0, 0, 0, 0, 1)
-                glMatrixMode(GL_MODELVIEW)
-
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-    glShadeModel(GL_SMOOTH)
-    glEnable(GL_CULL_FACE)
-    glEnable(GL_DEPTH_TEST)
+                    fullscreen = True
+                    #pygame.display.toggle_fullscreen()
+                    #screen = pygame.display.set_mode((infoObject.current_w, infoObject.current_h), FULLSCREEN|HWSURFACE|DOUBLEBUF|OPENGL)
+                    screen = pygame.display.set_mode((display_width,display_height), FULLSCREEN|HWSURFACE|DOUBLEBUF|OPENGL)
+                    solarsystem = Solarsystem()
+                    kamera.updateScreenSize(display_width,display_height)
 
     #Objekte zeichnen
-    sonne.zeichnen()
-    venus.zeichnen()
-    erde.zeichnen()
-    erdmond.zeichnen()
-    mars.zeichnen()
-    jupiter.zeichnen()
-    saturn.zeichnen()
-    uranus.zeichnen()
-    neptun.zeichnen()
+    solarsystem.zeichnen()
 
+    #Achsen zeichnen
+    solarsystem.achsenZeichnen()
 
-    glLoadIdentity()
-    #Rote Achse -- X-Achse
-    glLineWidth(2.5)
-    glColor3f(1, 0, 0)
-    glBegin(GL_LINES)
-    glVertex3f(0, 0, 0)
-    glVertex3f(100, 0, 0)
-    glEnd()
-
-    glLoadIdentity()
-    #Gruene Achse -- Y-Achse
-    glLineWidth(2.5)
-    glColor3f(1, 1, 0)
-    glBegin(GL_LINES)
-    glVertex3f(0, 0, 0)
-    glVertex3f(0, 100, 0)
-    glEnd()
-
-    glLoadIdentity()
-    #Weisse Achse -- Z-Achse
-    glLineWidth(2.5)
-    glColor3f(1, 1, 1)
-    glBegin(GL_LINES)
-    glVertex3f(0, 0, 0)
-    glVertex3f(0, 0, 100)
-    glEnd()
-
-
-    posx, posy = 0,0
-    sides = 200
-    radius = 5
-    glBegin(GL_LINE_LOOP)
-    for i in range(1000):
-        cosine= radius * cos(i*2*pi/sides) + posx
-        sine  = radius * sin(i*2*pi/sides) + posy
-        glVertex3f(cosine,sine,0)
-    glEnd()
-
-    radius = 8
-    glBegin(GL_LINE_LOOP)
-    for i in range(1000):
-        cosine= radius * cos(i*2*pi/sides) + posx
-        sine  = radius * sin(i*2*pi/sides) + posy
-        glVertex3f(cosine,sine,0)
-    glEnd()
+    #Bahnen zeichnen
+    solarsystem.bahnenZeichnen()
 
     #update the screen
     pygame.display.flip()

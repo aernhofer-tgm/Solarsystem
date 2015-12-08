@@ -1,3 +1,5 @@
+from FactoryPattern.AstronomischesObjekt import AstronomischesObjekt
+
 __author__ = 'jakubkopec'
 """
 Planet Interface
@@ -11,7 +13,7 @@ from OpenGL.GLU import *
 
 from Textur.Textur import Textur
 
-class Planet(object):
+class Planet(AstronomischesObjekt):
     __metaclass__ = ABCMeta
 
     @abstractmethod
@@ -75,7 +77,3 @@ class Planet(object):
     def setGeschwindigkeitsfaktor(self,geschwindigkeit):
         self.rotationsgeschwindigkeit[0] = round(self.rotationsurgeschwindigkeit[0] * geschwindigkeit,3)
         self.rotationsgeschwindigkeit[1] = round(self.rotationsurgeschwindigkeit[1] * geschwindigkeit,3)
-
-    @abstractmethod
-    def addMond(self):
-        pass
