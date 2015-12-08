@@ -12,7 +12,7 @@ class Kamera(object):
         self.blickwinkel = 45
 
         self.eyeX = 0
-        self.eyeY = 30
+        self.eyeY = -50
         self.eyeZ = 0
 
         self.centerX = 0

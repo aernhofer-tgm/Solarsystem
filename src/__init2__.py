@@ -1,5 +1,6 @@
 from FactoryPattern.Solarsystem import Solarsystem
 from Kamera import Kamera
+from licht import Licht
 
 __author__ = 'Jakub Kopec'
 
@@ -52,6 +53,11 @@ pygame.mouse.set_visible(False)
 
 #Mauszeiger setzen
 pygame.mouse.get_pos(620,365)
+
+#Licht
+licht = Licht()
+licht.anknipsen()
+
 
 #create a while loop for as long as the game gets quitted
 while not gameExit:
@@ -167,7 +173,7 @@ while not gameExit:
                 if kamera.upY == 1:
                     kamera.reset()
                     kamera.upZ = 1
-                    kamera.eyeY = 30
+                    kamera.eyeY = -50
                     kamera.update()
                 elif kamera.upZ == 1:
                     kamera.reset()
