@@ -103,6 +103,12 @@ class Solarsystem(SSI):
         self.erdmond.setPlanetGeschwindigkeit(self.erde.getRotationsgeschwindigkeit())
         self.erdmond.setGeschwindigkeitsfaktor(self.geschwindigkeit)
 
+    def disableTexture(self):
+        glDisable(GL_TEXTURE_2D)
+
+    def enableTexture(self):
+        glEnable(GL_TEXTURE_2D)
+
     def pause(self, switch):
 
         if switch:

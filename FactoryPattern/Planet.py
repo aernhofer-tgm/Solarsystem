@@ -17,7 +17,7 @@ class Planet(AstronomischesObjekt):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def __init__(self, groesse, rotationswinkel, rotationspunkt, position,rotationsrichtung,rotationsgeschwindigkeit,textur):
+    def __init__(self, groesse, rotationswinkel, rotationspunkt, position,rotationsrichtung,rotationsgeschwindigkeit,texturname):
         self.rotationswinkel = rotationswinkel[0]
         self.eigenrotationswinkel = rotationswinkel[1]
         self.groesse = groesse
@@ -26,11 +26,11 @@ class Planet(AstronomischesObjekt):
         self.rotationsgeschwindigkeit = [1,1]
         self.rotationsgeschwindigkeit[0] = rotationsgeschwindigkeit[0]
         self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
-        self.textur = textur
+        self.texturname = texturname
         self.position = position
         self.rotationspunkt = rotationspunkt
         #Textur laden
-        self.textur_planet = Textur.laden(Textur.getPfad(self.textur))
+        self.textur_planet = Textur.laden(self.texturname)
 
     def zeichnen(self):
 

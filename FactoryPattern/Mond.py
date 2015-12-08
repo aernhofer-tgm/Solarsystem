@@ -17,7 +17,7 @@ class Mond(AstronomischesObjekt):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def __init__(self, groesse, rotationswinkel, position,rotationsrichtung,rotationsgeschwindigkeit,textur):
+    def __init__(self, groesse, rotationswinkel, position,rotationsrichtung,rotationsgeschwindigkeit,texturname):
         self.rotationswinkel = rotationswinkel[0]
         self.planetrotationswinkel = rotationswinkel[1]
         self.eigenrotationswinkel = rotationswinkel[2]
@@ -27,13 +27,10 @@ class Mond(AstronomischesObjekt):
         self.rotationsgeschwindigkeit = [1,1]
         self.rotationsgeschwindigkeit[0] = rotationsgeschwindigkeit[0]
         self.rotationsgeschwindigkeit[1] = rotationsgeschwindigkeit[1]
-        self.textur = textur
+        self.texturname = texturname
         self.position = position
         #Textur laden
-        self.textur_mond = Textur.laden(Textur.getPfad(self.textur))
-        #self.stern = stern
-        #self.planet = planet
-        #self.planetgeschwindigkeit = planetgeschwindigkeit
+        self.textur_mond = Textur.laden(self.texturname)
 
     def zeichnen(self):
 
@@ -58,7 +55,6 @@ class Mond(AstronomischesObjekt):
         #Rotation um sich selbst
         self.eigenrotationswinkel = self.eigenrotationswinkel + self.rotationsgeschwindigkeit[1]
         glRotatef(self.eigenrotationswinkel,self.rotationsrichtung[0],self.rotationsrichtung[1],self.rotationsrichtung[2])
-
 
         #Textur uebernehmen
         glBindTexture(GL_TEXTURE_2D, self.textur_mond)

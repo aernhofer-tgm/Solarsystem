@@ -18,16 +18,16 @@ class Stern(AstronomischesObjekt):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def __init__(self,groesse,position,drehrichtung,drehgeschwindigkeit,textur):
+    def __init__(self,groesse,position,drehrichtung,drehgeschwindigkeit,texturname):
         self.winkel = 1
         self.groesse = groesse
         self.drehrichtung = drehrichtung
         self.drehurgeschwindigkeit = drehgeschwindigkeit
         self.drehgeschwindigkeit = drehgeschwindigkeit
-        self.textur = textur
+        self.texturname = texturname
         self.position = position
         #Textur laden
-        self.textur_stern = Textur.laden(Textur.getPfad(self.textur))
+        self.textur_stern = Textur.laden(self.texturname)
 
     def zeichnen(self):
 

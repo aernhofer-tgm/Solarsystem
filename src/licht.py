@@ -19,3 +19,6 @@ class Licht(object):
         glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.1)
         glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.05)
         glEnable(GL_LIGHT0)
+
+    def ausknipsen(self):
+        glDisable(GL_LIGHTING)

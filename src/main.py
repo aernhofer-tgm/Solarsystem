@@ -63,8 +63,11 @@ class Main(object):
 
         #Licht
         licht = Licht()
-        licht.anknipsen()
+        #licht.anknipsen()
+        licht_schalter = False
 
+        #Textur
+        textur_schalter = True
 
         #create a while loop for as long as the game gets quitted
         while not gameExit:
@@ -91,22 +94,6 @@ class Main(object):
                 elif kamera.upZ == 1:
                     kamera.centerZ += -drehung[1]/20
                 kamera.update()
-
-            #linksklick Maus
-            if mousebutton[0]:
-                solarsystem.updateSpeed(0.1)
-
-            #mausradklick
-            if mousebutton[1]:
-                if solarsystem.geschwindigkeit != 0:
-                    solarsystem.pause(True)
-                else:
-                    solarsystem.pause(False)
-
-            #Rechtsklick Maus
-            if mousebutton[2]:
-                if solarsystem.geschwindigkeit != 0:
-                    solarsystem.updateSpeed(-0.1)
 
             #Zoom
             if keys[pygame.K_PLUS]:
@@ -176,6 +163,33 @@ class Main(object):
                 if event.type == pygame.QUIT:
                     #while ends after this point
                     gameExit = True
+
+                elif event.type == MOUSEBUTTONDOWN:
+
+                    #linksklick Maus
+                    if event.button == 1:
+                        if licht_schalter == False:
+                            licht_schalter = True
+                            licht.anknipsen()
+                        else:
+                            licht_schalter = False
+                            licht.ausknipsen()
+
+                    #mausradklick
+                    if event.button == 2:
+                        if solarsystem.geschwindigkeit != 0:
+                            solarsystem.pause(True)
+                        else:
+                            solarsystem.pause(False)
+
+                    #Rechtsklick Maus
+                    if event.button == 3:
+                        if textur_schalter == True:
+                            textur_schalter = False
+                            solarsystem.disableTexture()
+                        else:
+                            textur_schalter = True
+                            solarsystem.enableTexture()
 
                 elif event.type == VIDEORESIZE:
                     width, height = event.size
