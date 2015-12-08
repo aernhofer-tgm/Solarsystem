@@ -9,7 +9,7 @@ class Licht(object):
         pass
 
     def anknipsen(self):
-        print("Licht aufdrehen")
+        #print("Licht aufdrehen")
         glEnable(GL_LIGHTING)
         #lightZeroPosition = (10, 4, 10, 1)
         lightZeroPosition = (4, 4, 4, 1)
