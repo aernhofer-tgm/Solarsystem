@@ -164,8 +164,13 @@ class Main(object):
                     #while ends after this point
                     gameExit = True
 
-                elif event.type == MOUSEBUTTONDOWN:
+                elif event.type == VIDEORESIZE:
+                    width, height = event.size
+                    screen = pygame.display.set_mode((width,height), HWSURFACE|DOUBLEBUF|OPENGL|RESIZABLE)
+                    solarsystem = Solarsystem()
+                    kamera.updateScreenSize(width,height)
 
+                elif event.type == pygame.MOUSEBUTTONDOWN:
                     #linksklick Maus
                     if event.button == 1:
                         if licht_schalter == False:
@@ -191,13 +196,7 @@ class Main(object):
                             textur_schalter = True
                             solarsystem.enableTexture()
 
-                elif event.type == VIDEORESIZE:
-                    width, height = event.size
-                    screen = pygame.display.set_mode((width,height), HWSURFACE|DOUBLEBUF|OPENGL|RESIZABLE)
-                    solarsystem = Solarsystem()
-                    kamera.updateScreenSize(width,height)
-
-                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    #Zoomen durch scrollen
                     if event.button == 4:
                         if kamera.upY == 1:
                             kamera.eyeZ -= 10
