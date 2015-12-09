@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#D:/onedrive/TGM/5BHIT/SEW/Solarsystem/FactoryPattern/Erde.py</OriginalElement>
+  <nodes>
+    <node x="1564.0" y="5396.0">FactoryPattern.Erde.Erde</node>
+    <node x="5006.0" y="1988.0">_collections_abc.Hashable</node>
+    <node x="0.0" y="3464.0">FactoryPattern.Mars.Mars</node>
+    <node x="5143.0" y="2963.0">Textur.Textur.Textur</node>
+    <node x="2477.0" y="682.0">FactoryPattern.Mond.Mond</node>
+    <node x="742.0" y="3697.0">FactoryPattern.Jupiter.Jupiter</node>
+    <node x="1522.0" y="2142.0">FactoryPattern.Stern.Stern</node>
+    <node x="5194.0" y="2358.0">FactoryPattern.SSI.SSI</node>
+    <node x="1953.0" y="3941.0">FactoryPattern.Planet.Planet</node>
+    <node x="5000.0" y="3199.0">licht.Licht</node>
+    <node x="569.0" y="1660.0">FactoryPattern.Sonne.Sonne</node>
+    <node x="261.0" y="5208.0">FactoryPattern.Venus.Venus</node>
+    <node x="5836.0" y="1826.0">FactoryPattern.Solarsystem.Solarsystem</node>
+    <node x="2178.0" y="3226.0">FactoryPattern.Saturn.Saturn</node>
+    <node x="5222.0" y="2685.0">main.Main</node>
+    <node x="2845.0" y="5605.0">FactoryPattern.Neptun.Neptun</node>
+    <node x="3994.0" y="1848.0">object</node>
+    <node x="3505.0" y="3783.0">FactoryPattern.Uranus.Uranus</node>
+    <node x="1436.0" y="5941.0">FactoryPattern.Merkur.Merkur</node>
+    <node x="1480.0" y="0.0">FactoryPattern.Erdmond.Erdmond</node>
+    <node x="2930.0" y="2742.0">FactoryPattern.AstronomischesObjekt.AstronomischesObjekt</node>
+    <node x="4527.0" y="858.0">Kamera.Kamera</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="object" target="_collections_abc.Hashable">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Erde.Erde" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Jupiter.Jupiter" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Mond.Mond" target="FactoryPattern.AstronomischesObjekt.AstronomischesObjekt">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.SSI.SSI" target="object">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Saturn.Saturn" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Erdmond.Erdmond" target="FactoryPattern.Mond.Mond">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="licht.Licht" target="object">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Merkur.Merkur" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Textur.Textur.Textur" target="object">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Neptun.Neptun" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Venus.Venus" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Stern.Stern" target="FactoryPattern.AstronomischesObjekt.AstronomischesObjekt">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="Kamera.Kamera" target="object">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Planet.Planet" target="FactoryPattern.AstronomischesObjekt.AstronomischesObjekt">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Sonne.Sonne" target="FactoryPattern.Stern.Stern">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.AstronomischesObjekt.AstronomischesObjekt" target="object">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Mars.Mars" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Solarsystem.Solarsystem" target="FactoryPattern.SSI.SSI">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="FactoryPattern.Uranus.Uranus" target="FactoryPattern.Planet.Planet">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="main.Main" target="object">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.38772622573214877" x="3249.047610964949" y="3288.3990494780614" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+</Diagram>
+
