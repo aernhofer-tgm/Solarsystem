@@ -2,7 +2,7 @@ from FactoryPattern.Solarsystem import Solarsystem
 from Kamera import Kamera
 from licht import Licht
 
-__author__ = 'Jakub Kopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 
 import pygame
 from pygame.locals import *
@@ -56,7 +56,7 @@ class Main(object):
         solarsystem = Solarsystem()
 
         #Maus ausblenden
-        #pygame.mouse.set_visible(False)
+        pygame.mouse.set_visible(False)
 
         #Mauszeiger setzen
         pygame.mouse.set_pos(display_width/2,display_height/2)

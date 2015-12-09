@@ -1,7 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-__author__ = 'Jakub Kopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 
 class Kamera(object):
 

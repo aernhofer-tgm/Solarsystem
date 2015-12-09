@@ -1,4 +1,4 @@
-__author__ = 'Jakub Kopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -12,7 +12,7 @@ class Licht(object):
         #print("Licht aufdrehen")
         glEnable(GL_LIGHTING)
         #lightZeroPosition = (10, 4, 10, 1)
-        lightZeroPosition = (4, 4, 4, 1)
+        lightZeroPosition = (0, -5, 8, 1)#licht links oben erzeugen
         lightZeroColor = (0.8, 1, 0.8, 1) #green tinged
         glLightfv(GL_LIGHT0, GL_POSITION, lightZeroPosition)
         glLightfv(GL_LIGHT0, GL_DIFFUSE, lightZeroColor)

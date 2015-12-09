@@ -13,7 +13,7 @@ from OpenGL.GL import *
 
 from math import *
 
-__author__ = 'jakubkopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 """
 Solarsystem
 ------------------------------------------------------------------------------------------
@@ -27,35 +27,32 @@ class Solarsystem(SSI):
     def __init__(self):
 
         self.sonne = Sonne()
-
         self.merkur = Merkur()
-        self.merkur.setRotationspunkt(self.sonne.getPosition())
-
         self.venus = Venus()
-        self.venus.setRotationspunkt(self.sonne.getPosition())
-
         self.erde = Erde()
-        self.erde.setRotationspunkt(self.sonne.getPosition())
-
         self.erdmond = Erdmond()
         self.erdmond.setStern(self.sonne.getPosition())
         self.erdmond.setPlanet(self.erde.getPosition())
         self.erdmond.setPlanetGeschwindigkeit(self.erde.getRotationsgeschwindigkeit())
-
         self.mars = Mars()
-        self.mars.setRotationspunkt(self.sonne.getPosition())
-
         self.jupiter = Jupiter()
-        self.jupiter.setRotationspunkt(self.sonne.getPosition())
-
         self.saturn = Saturn()
-        self.saturn.setRotationspunkt(self.sonne.getPosition())
-
         self.uranus = Uranus()
-        self.uranus.setRotationspunkt(self.sonne.getPosition())
-
         self.neptun = Neptun()
-        self.neptun.setRotationspunkt(self.sonne.getPosition())
+
+        self.planeten = []
+        self.planeten.append(self.merkur)
+        self.planeten.append(self.venus)
+        self.planeten.append(self.erde)
+        self.planeten.append(self.mars)
+        self.planeten.append(self.jupiter)
+        self.planeten.append(self.saturn)
+        self.planeten.append(self.uranus)
+        self.planeten.append(self.neptun)
+
+        #Um die Sonne drehen lassen
+        for planet in self.planeten:
+            planet.setRotationspunkt(self.sonne.getPosition())
 
         self.geschwindigkeit = 1
 
@@ -77,29 +74,19 @@ class Solarsystem(SSI):
 
         #Objekte zeichnen
         self.sonne.zeichnen()
-        self.merkur.zeichnen()
-        self.venus.zeichnen()
-        self.erde.zeichnen()
         self.erdmond.zeichnen()
-        self.mars.zeichnen()
-        self.jupiter.zeichnen()
-        self.saturn.zeichnen()
-        self.uranus.zeichnen()
-        self.neptun.zeichnen()
+        for planet in self.planeten:
+            planet.zeichnen()
 
     def updateSpeed(self,faktor):
 
         self.geschwindigkeit = round(self.geschwindigkeit+faktor,1)
 
         self.sonne.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.merkur.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.venus.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.erde.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.mars.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.jupiter.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.saturn.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.uranus.setGeschwindigkeitsfaktor(self.geschwindigkeit)
-        self.neptun.setGeschwindigkeitsfaktor(self.geschwindigkeit)
+
+        for planet in self.planeten:
+            planet.setGeschwindigkeitsfaktor(self.geschwindigkeit)
+
         self.erdmond.setPlanetGeschwindigkeit(self.erde.getRotationsgeschwindigkeit())
         self.erdmond.setGeschwindigkeitsfaktor(self.geschwindigkeit)
 
@@ -148,14 +135,9 @@ class Solarsystem(SSI):
         glEnd()
 
     def bahnenZeichnen(self):
-        self.bahnZeichnen(5)
-        self.bahnZeichnen(7.5)
-        self.bahnZeichnen(10.5)
-        self.bahnZeichnen(13.5)
-        self.bahnZeichnen(16.9)
-        self.bahnZeichnen(21.5)
-        self.bahnZeichnen(25)
-        self.bahnZeichnen(27.5)
+
+        for planet in self.planeten:
+            self.bahnZeichnen(planet.getPosition()[0])
 
     def bahnZeichnen(self,radius):
         posx, posy = 0,0

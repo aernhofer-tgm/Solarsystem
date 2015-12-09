@@ -1,6 +1,6 @@
 from FactoryPattern.AstronomischesObjekt import AstronomischesObjekt
 
-__author__ = 'jakubkopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 """
 Planet Interface
 ------------------------------------------------------------------------------------------

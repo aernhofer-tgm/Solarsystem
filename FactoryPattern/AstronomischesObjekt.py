@@ -1,7 +1,7 @@
 from FactoryPattern.SSI import SSI
 from abc import ABCMeta, abstractmethod
 
-__author__ = 'jakubkopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 
 """
 Astronomisches Objekt

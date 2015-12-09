@@ -1,4 +1,4 @@
-__author__ = 'jakubkopec'
+__author__ = 'Andreas Ernhofer, Jakub Kopec'
 """
 Erdmond
 ------------------------------------------------------------------------------------------
